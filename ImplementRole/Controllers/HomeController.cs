@@ -1,6 +1,7 @@
 ﻿using ImplementRole.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace ImplementRole.Controllers
             var userStore = new UserStore<CustomUser>(context);
             var manager = new UserManager<CustomUser>(userStore);
 
+            var signInManager = new SignInManager<CustomUser, string>(manager, HttpContext.GetOwinContext().Authentication);
             var email = "foo@bar.com";
             var password = "Passw0rd";
             var user = await manager.FindByEmailAsync(email);
@@ -36,9 +38,11 @@ namespace ImplementRole.Controllers
             }
             else
             {
-                user.FirstName = "Super";
-                user.LastName = "Admin";
-                await manager.UpdateAsync(user);
+                var result =  await signInManager.PasswordSignInAsync(user.Email,password,true,false);
+                if (result == SignInStatus.Success)
+                {
+                    return Content("Hello " + user.FirstName + " " + user.LastName);
+                }
             }
             return Content("Hello Index");
         }
