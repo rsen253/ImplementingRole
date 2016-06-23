@@ -11,20 +11,20 @@ using System.Web.Mvc;
 
 namespace ImplementRole.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         // GET: Home
         public async Task<ActionResult> Index()
         {
-            var context = new ApplicationDbContext();
-            var userStore = new UserStore<CustomUser>(context);
-            var manager = new UserManager<CustomUser>(userStore);
-
-            var signInManager = new SignInManager<CustomUser, string>(manager, HttpContext.GetOwinContext().Authentication);
             var email = "foo@bar.com";
             var password = "Passw0rd";
-            var user = await manager.FindByEmailAsync(email);
+            var user = await userManager.FindByEmailAsync(email);
+            var roles = ApplicationRoleManeger.Create(HttpContext.GetOwinContext());
 
+            if (!await roles.RoleExistsAsync(Security.Admin))
+            {
+                await roles.CreateAsync(new IdentityRole { Name = Security.Admin });
+            }
             if (user == null)
             {
                 user = new CustomUser
@@ -34,15 +34,11 @@ namespace ImplementRole.Controllers
                     FirstName = "Super",
                     LastName = "Admin"
                 };
-                await manager.CreateAsync(user, password);
+                await userManager.CreateAsync(user, password);
             }
             else
             {
-                var result =  await signInManager.PasswordSignInAsync(user.Email,password,true,false);
-                if (result == SignInStatus.Success)
-                {
-                    return Content("Hello " + user.FirstName + " " + user.LastName);
-                }
+                await userManager.AddToRoleAsync(user.Id, Security.Admin);
             }
             return Content("Hello Index");
         }
