@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using ImplementRole.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace ImplementRole.Controllers
         // GET: Home
         public async Task<ActionResult> Index()
         {
-            var context = new IdentityDbContext<IdentityUser>();
-            var userStore = new UserStore<IdentityUser>(context);
-            var manager = new UserManager<IdentityUser>(userStore);
+            var context = new ApplicationDbContext();
+            var userStore = new UserStore<CustomUser>(context);
+            var manager = new UserManager<CustomUser>(userStore);
 
             var email = "foo@bar.com";
             var password = "Passw0rd";
@@ -24,12 +25,20 @@ namespace ImplementRole.Controllers
 
             if (user == null)
             {
-                user = new IdentityUser
+                user = new CustomUser
                 {
                     UserName = email,
-                    Email = email
+                    Email = email,
+                    FirstName = "Super",
+                    LastName = "Admin"
                 };
                 await manager.CreateAsync(user, password);
+            }
+            else
+            {
+                user.FirstName = "Super";
+                user.LastName = "Admin";
+                await manager.UpdateAsync(user);
             }
             return Content("Hello Index");
         }

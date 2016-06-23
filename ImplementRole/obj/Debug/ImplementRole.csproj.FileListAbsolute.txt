@@ -39,3 +39,6 @@ M:\MVC Application\ImplementRole\ImplementRole\bin\System.Web.Mvc.xml
 M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.csprojResolveAssemblyReference.cache
 M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.dll
 M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.pdb
+M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.Migrations.InitialCreate.resources
+M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.csproj.GenerateResource.Cache
+M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.Migrations.AddCustomeUser.resources
