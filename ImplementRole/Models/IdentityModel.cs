@@ -6,6 +6,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 
 namespace ImplementRole.Models
 {
@@ -22,8 +24,14 @@ namespace ImplementRole.Models
     public class CustomUser : IdentityUser
     {
         public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string LastName { get; set; } 
+        public string CountryId { get; set; }
+        public string StateId { get; set; }
 
+        public virtual Country Country { get; set; }
+        public virtual State State { get; set; }
+        DbSet<Country> CountryDetails { get; set; }
+        DbSet<State> StateList { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<CustomUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
