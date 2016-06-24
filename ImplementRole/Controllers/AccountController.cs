@@ -1,4 +1,5 @@
 ﻿using ImplementRole.Models;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,11 +48,49 @@ namespace ImplementRole.Controllers
             }
             return View(registerViewModel);
         }
+        [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(LoginViewModel loginViewModel, string returnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(loginViewModel);
+            }
+
+            var result = await signInManager.PasswordSignInAsync(loginViewModel.Email,loginViewModel.Password,loginViewModel.RememberMe,shouldLockout:false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToLocal(returnUrl);
+                case SignInStatus.Failure:
+                    return RedirectToLocal(returnUrl);
+                default:
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    return View(loginViewModel);
+            }
+        }
 
         public ActionResult LogOff()
         {
             HttpContext.GetOwinContext().Authentication.SignOut();
             return RedirectToAction("Index","Home");
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
