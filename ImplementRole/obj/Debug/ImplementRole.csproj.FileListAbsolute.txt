@@ -42,3 +42,8 @@ M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.pdb
 M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.Migrations.InitialCreate.resources
 M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.csproj.GenerateResource.Cache
 M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.Migrations.AddCustomeUser.resources
+M:\MVC Application\ImplementRole\ImplementRole\bin\Antlr3.Runtime.dll
+M:\MVC Application\ImplementRole\ImplementRole\bin\System.Web.Optimization.dll
+M:\MVC Application\ImplementRole\ImplementRole\bin\WebGrease.dll
+M:\MVC Application\ImplementRole\ImplementRole\bin\Antlr3.Runtime.pdb
+M:\MVC Application\ImplementRole\ImplementRole\bin\System.Web.Optimization.xml

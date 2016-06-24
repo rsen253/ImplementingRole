@@ -60,7 +60,8 @@ namespace ImplementRole.Controllers
             {
                 await userManager.AddToRoleAsync(user.Id, Security.Admin);
             }
-            return Content("Hello Index");
+            //return Content("Hello Index");
+            return View();
         }
 
         public async Task<ActionResult> Login()
