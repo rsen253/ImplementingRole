@@ -73,7 +73,7 @@ namespace ImplementRole.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> LogOut()
+        public ActionResult LogOut()
         {
             HttpContext.GetOwinContext().Authentication.SignOut();
             return RedirectToAction("Index");
