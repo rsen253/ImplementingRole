@@ -25,6 +25,26 @@ namespace ImplementRole.Controllers
             {
                 await roles.CreateAsync(new IdentityRole { Name = Security.Admin });
             }
+            if (!await roles.RoleExistsAsync(Security.Accounting))
+            {
+                await roles.CreateAsync(new IdentityRole { Name = Security.Accounting });
+            }
+            if (!await roles.RoleExistsAsync(Security.It))
+            {
+                await roles.CreateAsync(new IdentityRole { Name = Security.It });
+            }
+            if (!await roles.RoleExistsAsync(Security.Police))
+            {
+                await roles.CreateAsync(new IdentityRole { Name = Security.Police });
+            }
+            if (!await roles.RoleExistsAsync(Security.Teacher))
+            {
+                await roles.CreateAsync(new IdentityRole { Name = Security.Teacher });
+            }
+            if (!await roles.RoleExistsAsync(Security.Student))
+            {
+                await roles.CreateAsync(new IdentityRole { Name = Security.Student });
+            }
             if (user == null)
             {
                 user = new CustomUser
@@ -41,6 +61,21 @@ namespace ImplementRole.Controllers
                 await userManager.AddToRoleAsync(user.Id, Security.Admin);
             }
             return Content("Hello Index");
+        }
+
+        public async Task<ActionResult> Login()
+        {
+            var email = "foo@bar.com";
+            //var password = "Passw0rd";
+            var user = await userManager.FindByEmailAsync(email);
+            await signInManager.SignInAsync(user,true,true);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> LogOut()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut();
+            return RedirectToAction("Index");
         }
     }
 }
