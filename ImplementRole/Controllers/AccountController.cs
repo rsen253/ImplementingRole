@@ -1,4 +1,5 @@
 ﻿using ImplementRole.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace ImplementRole.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Account
         public ActionResult Index()
         {
@@ -28,6 +30,11 @@ namespace ImplementRole.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            List<Country> CountryList = new List<Country>();
+            List<State> StateList = new List<State>();
+            CountryList = db.CountryDetails.OrderBy(c => c.CountryName).ToList();
+            ViewBag.CountryID = new SelectList(CountryList, "CountryId", "CountryName");
+            ViewBag.StateID = new SelectList(StateList, "StateId", "StateName");
             return View();
         }
         [HttpPost]
@@ -37,7 +44,7 @@ namespace ImplementRole.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new CustomUser { UserName = registerViewModel.Email, Email = registerViewModel.Email, FirstName = registerViewModel.FirstName, LastName = registerViewModel.LastName};
+                var user = new CustomUser { UserName = registerViewModel.Email, Email = registerViewModel.Email, FirstName = registerViewModel.FirstName, LastName = registerViewModel.LastName, CountryId = registerViewModel.CountryId , StateId = registerViewModel.StateId };
                 var password = registerViewModel.Password;
                 var result = await userManager.CreateAsync(user,password);
                 if (result.Succeeded)
@@ -91,6 +98,37 @@ namespace ImplementRole.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        [AllowAnonymous]
+        public JsonResult GetStates(RegisterViewModel registerViewModel)
+        {
+            List<State> StateList = new List<State>();
+            var CountryID = registerViewModel.CountryId;
+            int ID = CountryID;
+            if (CountryID > 0)
+            {
+                
+                 StateList = db.StateList.Where(a => a.CountryId.Equals(ID)).OrderBy(a => a.StateName).ToList();
+                
+            }
+            if (Request.IsAjaxRequest())
+            {
+                return new JsonResult
+                {
+                    Data = StateList,
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+                //return Json(StateList, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return new JsonResult
+                {
+                    Data = "Not valid request",
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
         }
     }
 }

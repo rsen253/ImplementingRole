@@ -10,17 +10,12 @@ namespace ImplementRole.Models
     
     public class Country
     {
-        public Country()
-        {
-            StateList = new List<State>();
-        }
         //public string CountryId { get { return Guid.NewGuid().ToString(); } }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string CountryId { get; set; }
-        public int CountryName { get; set; }
-
+        public int CountryId { get; set; }
+        public string CountryName { get; set; }
         //public virtual CustomUser CustomeUesr { get; set; }
-        public virtual ICollection<State> StateList { get; set; }
+        
     }
 
     public class State
@@ -30,7 +25,7 @@ namespace ImplementRole.Models
         public int StateId { get; set; }
         [Display(Name = "State Name")]
         public string StateName { get; set; }
-
+        [ForeignKey("CountryId")]
         public virtual Country Country { get; set; }
     }
 }

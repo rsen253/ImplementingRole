@@ -13,7 +13,10 @@ namespace ImplementRole.Models
 {
     public class ApplicationDbContext : IdentityDbContext<CustomUser>
     {
-        public ApplicationDbContext() :  base(){}
+        public ApplicationDbContext() :  base(){ }
+
+        public DbSet<Country> CountryDetails { get; set; }
+        public DbSet<State> StateList { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -23,15 +26,17 @@ namespace ImplementRole.Models
 
     public class CustomUser : IdentityUser
     {
+        
         public string FirstName { get; set; }
         public string LastName { get; set; } 
-        public string CountryId { get; set; }
-        public string StateId { get; set; }
+        public int CountryId { get; set; }
+        public int StateId { get; set; }
 
-        public virtual Country Country { get; set; }
-        public virtual State State { get; set; }
-        DbSet<Country> CountryDetails { get; set; }
-        DbSet<State> StateList { get; set; }
+        ////[ForeignKey("CountryId")]
+        //public virtual Country Country { get; set; }
+        ////[ForeignKey("StateId")]
+        //public virtual State State { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<CustomUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -50,4 +55,9 @@ namespace ImplementRole.Models
         public const string Teacher = "teacher";
         public const string Student = "student";
     }
+
+    //public class DatabaseContext : DbContext
+    //{
+    //    public int MyProperty { get; set; }
+    //}
 }

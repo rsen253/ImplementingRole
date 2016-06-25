@@ -39,14 +39,11 @@ M:\MVC Application\ImplementRole\ImplementRole\bin\System.Web.Mvc.xml
 M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.csprojResolveAssemblyReference.cache
 M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.dll
 M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.pdb
-M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.Migrations.InitialCreate.resources
-M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.csproj.GenerateResource.Cache
-M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.Migrations.AddCustomeUser.resources
 M:\MVC Application\ImplementRole\ImplementRole\bin\Antlr3.Runtime.dll
 M:\MVC Application\ImplementRole\ImplementRole\bin\System.Web.Optimization.dll
 M:\MVC Application\ImplementRole\ImplementRole\bin\WebGrease.dll
 M:\MVC Application\ImplementRole\ImplementRole\bin\Antlr3.Runtime.pdb
 M:\MVC Application\ImplementRole\ImplementRole\bin\System.Web.Optimization.xml
-M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.Migrations.country.resources
-M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.Migrations.AddState.resources
-M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.Migrations.AddAutoincrement.resources
+M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.Migrations.InitialCreate.resources
+M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.csproj.GenerateResource.Cache
+M:\MVC Application\ImplementRole\ImplementRole\obj\Debug\ImplementRole.Migrations.AddCustomeFieldtoDb.resources

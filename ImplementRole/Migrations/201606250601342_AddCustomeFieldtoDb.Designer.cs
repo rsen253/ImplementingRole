@@ -7,13 +7,13 @@ namespace ImplementRole.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class AddAutoincrement : IMigrationMetadata
+    public sealed partial class AddCustomeFieldtoDb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddAutoincrement));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCustomeFieldtoDb));
         
         string IMigrationMetadata.Id
         {
-            get { return "201606241333130_AddAutoincrement"; }
+            get { return "201606250601342_AddCustomeFieldtoDb"; }
         }
         
         string IMigrationMetadata.Source

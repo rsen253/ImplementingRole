@@ -57,6 +57,22 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.CountryId, "Select Country", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CountryId, @ViewBag.CountryID as SelectList, "Select Country", new { htmlAttributes = new { @class = "btn btn-primary dropdown-toggle" } })
+                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StateId, "Select State", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.StateId, @ViewBag.StateID as SelectList, "Select State", new { htmlAttributes = new { @class = "btn btn-primary dropdown-toggle" } })
+                @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -70,4 +86,35 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script language="javascript">
+        $(document).ready(function () {
+            $("#CountryId").change(function () {
+                // this will call when Country Dropdown select change
+                var countryId = parseInt($("#CountryId").val());
+                if (!isNaN(countryId)) {
+                    var ddState = $("#StateId");
+                    ddState.empty(); // this line is for clear all items from State dropdown
+                    ddState.append($("<option></option").val("").html("--Select State--"));
+
+                    // Here I will call Controller Action via Jquery to load State for selected Country
+                    $.ajax({
+                        url: "@Url.Action("GetStates", "Account")",
+                        type: "GET",
+                        data: { countryId: countryId },
+                        dataType: "json",
+                        success: function (data) {
+                            $.each(data, function (i, val) {
+                                ddState.append(
+                                        $("<option></option>").val(val.StateId).html(val.StateName)
+                                    ); console.log(val.StateName);
+                            });
+                        },
+                        error: function () {
+                            alert("Error!");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 }

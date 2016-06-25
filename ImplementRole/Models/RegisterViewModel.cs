@@ -29,5 +29,9 @@ namespace ImplementRole.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Required(ErrorMessage = "Country is required")]
+        public int CountryId { get; set; }
+        [Required(ErrorMessage = "State is required")]
+        public int StateId { get; set; }
     }
 }

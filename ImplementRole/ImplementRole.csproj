@@ -191,25 +191,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606231237021_InitialCreate.cs" />
-    <Compile Include="Migrations\201606231237021_InitialCreate.Designer.cs">
-      <DependentUpon>201606231237021_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201606250549127_InitialCreate.cs" />
+    <Compile Include="Migrations\201606250549127_InitialCreate.Designer.cs">
+      <DependentUpon>201606250549127_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606231251415_AddCustomeUser.cs" />
-    <Compile Include="Migrations\201606231251415_AddCustomeUser.Designer.cs">
-      <DependentUpon>201606231251415_AddCustomeUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606241300361_country.cs" />
-    <Compile Include="Migrations\201606241300361_country.Designer.cs">
-      <DependentUpon>201606241300361_country.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606241320516_AddState.cs" />
-    <Compile Include="Migrations\201606241320516_AddState.Designer.cs">
-      <DependentUpon>201606241320516_AddState.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606241333130_AddAutoincrement.cs" />
-    <Compile Include="Migrations\201606241333130_AddAutoincrement.Designer.cs">
-      <DependentUpon>201606241333130_AddAutoincrement.cs</DependentUpon>
+    <Compile Include="Migrations\201606250601342_AddCustomeFieldtoDb.cs" />
+    <Compile Include="Migrations\201606250601342_AddCustomeFieldtoDb.Designer.cs">
+      <DependentUpon>201606250601342_AddCustomeFieldtoDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomModel.cs" />
@@ -276,20 +264,11 @@
     <Folder Include="Views\Company\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606231237021_InitialCreate.resx">
-      <DependentUpon>201606231237021_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606250549127_InitialCreate.resx">
+      <DependentUpon>201606250549127_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606231251415_AddCustomeUser.resx">
-      <DependentUpon>201606231251415_AddCustomeUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606241300361_country.resx">
-      <DependentUpon>201606241300361_country.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606241320516_AddState.resx">
-      <DependentUpon>201606241320516_AddState.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606241333130_AddAutoincrement.resx">
-      <DependentUpon>201606241333130_AddAutoincrement.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606250601342_AddCustomeFieldtoDb.resx">
+      <DependentUpon>201606250601342_AddCustomeFieldtoDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
