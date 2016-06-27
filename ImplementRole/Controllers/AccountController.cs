@@ -20,7 +20,7 @@ namespace ImplementRole.Controllers
         {
             if (User.IsInRole(Security.Admin))
             {
-                
+                ViewBag.TotalUser = (from u in db.Users select u).Count() - 1;
                 return View("Admin");
             }
             else
@@ -50,7 +50,11 @@ namespace ImplementRole.Controllers
                 var result = await userManager.CreateAsync(user,password);
                 if (result.Succeeded)
 	            {
-                    await signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    if (!User.IsInRole(Security.Admin))
+                    {
+                        await signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    }
+                    
                     return RedirectToAction("Index","Home");
 	            }
             }

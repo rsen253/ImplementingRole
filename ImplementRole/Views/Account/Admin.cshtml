@@ -42,7 +42,7 @@
                             <i class="fa fa-users fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12/div>
+                            <div class="huge">@ViewBag.TotalUser</div>
                             <div>Total User</div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Add User</a></li>
+                    <li>@Html.ActionLink("Add User","AddUser","Admin")</li>
                     <li><a href="#">Add Role To the User</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">Manage User</a></li>
@@ -120,4 +120,3 @@
     </div>
     <!-- /.row -->
 </div>
-
