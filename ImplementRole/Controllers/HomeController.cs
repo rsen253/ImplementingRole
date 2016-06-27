@@ -16,8 +16,8 @@ namespace ImplementRole.Controllers
         // GET: Home
         public async Task<ActionResult> Index()
         {
-            var email = "foo@bar.com";
-            var password = "Passw0rd";
+            var email = "admin@gmail.com";
+            var password = "Admin@123";
             var user = await userManager.FindByEmailAsync(email);
             var roles = ApplicationRoleManeger.Create(HttpContext.GetOwinContext());
 
@@ -61,6 +61,10 @@ namespace ImplementRole.Controllers
                 await userManager.AddToRoleAsync(user.Id, Security.Admin);
             }
             //return Content("Hello Index");
+            if (User.IsInRole(Security.Admin))
+            {
+                return RedirectToAction("Index","Account");
+            }
             return View();
         }
 
@@ -73,10 +77,6 @@ namespace ImplementRole.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult LogOut()
-        {
-            HttpContext.GetOwinContext().Authentication.SignOut();
-            return RedirectToAction("Index");
-        }
+        
     }
 }

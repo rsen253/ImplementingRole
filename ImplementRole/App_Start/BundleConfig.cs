@@ -34,6 +34,8 @@ namespace ImplementRole.App_Start
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/freelancer.css",
+                      "~/Content/sb-admin.css",
+                      "~/Content/plugins/morris.css",
                       "~/font-awesome/css/font-awesome.min.css"));
         }
     }

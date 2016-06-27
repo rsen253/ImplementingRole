@@ -18,13 +18,14 @@ namespace ImplementRole.Controllers
         // GET: Account
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.IsInRole(Security.Admin))
             {
-                return Content("You are authorized");
+                
+                return View("Admin");
             }
             else
             {
-                return Content("You are not authorized");
+                return View();
             }
         }
         [AllowAnonymous]
@@ -84,7 +85,7 @@ namespace ImplementRole.Controllers
                     return View(loginViewModel);
             }
         }
-
+        [AllowAnonymous]
         public ActionResult LogOff()
         {
             HttpContext.GetOwinContext().Authentication.SignOut();
@@ -129,6 +130,11 @@ namespace ImplementRole.Controllers
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
+        }
+
+        public ActionResult Admin()
+        {
+            return View();
         }
     }
 }
