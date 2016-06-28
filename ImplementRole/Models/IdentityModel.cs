@@ -17,7 +17,6 @@ namespace ImplementRole.Models
 
         public DbSet<Country> CountryDetails { get; set; }
         public DbSet<State> StateList { get; set; }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
@@ -32,10 +31,11 @@ namespace ImplementRole.Models
         public int CountryId { get; set; }
         public int StateId { get; set; }
 
+
         ////[ForeignKey("CountryId")]
-        //public virtual Country Country { get; set; }
+        public virtual Country Country { get; set; }
         ////[ForeignKey("StateId")]
-        //public virtual State State { get; set; }
+        public virtual State State { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<CustomUser> manager)
         {

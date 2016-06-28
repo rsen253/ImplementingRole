@@ -3,7 +3,7 @@ namespace ImplementRole.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class ChanginDb : DbMigration
     {
         public override void Up()
         {
@@ -58,6 +58,8 @@ namespace ImplementRole.Migrations
                         Id = c.String(nullable: false, maxLength: 128),
                         FirstName = c.String(),
                         LastName = c.String(),
+                        CountryId = c.Int(nullable: false),
+                        StateId = c.Int(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -69,15 +71,9 @@ namespace ImplementRole.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
-                        Country_CountryId = c.Int(),
-                        State_StateId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Countries", t => t.Country_CountryId)
-                .ForeignKey("dbo.States", t => t.State_StateId)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex")
-                .Index(t => t.Country_CountryId)
-                .Index(t => t.State_StateId);
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
             
             CreateTable(
                 "dbo.AspNetUserClaims",
@@ -108,17 +104,13 @@ namespace ImplementRole.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.AspNetUsers", "State_StateId", "dbo.States");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUsers", "Country_CountryId", "dbo.Countries");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.States", "CountryId", "dbo.Countries");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
-            DropIndex("dbo.AspNetUsers", new[] { "State_StateId" });
-            DropIndex("dbo.AspNetUsers", new[] { "Country_CountryId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.States", new[] { "CountryId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });

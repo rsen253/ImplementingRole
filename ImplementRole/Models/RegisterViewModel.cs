@@ -33,5 +33,8 @@ namespace ImplementRole.Models
         public int CountryId { get; set; }
         [Required(ErrorMessage = "State is required")]
         public int StateId { get; set; }
+
+        public virtual Country Country { get; set; }
+        public virtual State State { get; set; }
     }
 }

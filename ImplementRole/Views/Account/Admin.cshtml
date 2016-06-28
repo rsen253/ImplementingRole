@@ -56,9 +56,9 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>@Html.ActionLink("Add User","AddUser","Admin")</li>
-                    <li><a href="#">Add Role To the User</a></li>
+                    <li>@Html.ActionLink("Add role to the user", "AddRoleToUser", "Admin")</li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">Manage User</a></li>
+                    <li>@Html.ActionLink("Manage User", "ManageUser", "Admin")</li>
                 </ul>
             </div>
         </div>
@@ -70,7 +70,7 @@
                             <i class="fa fa-lock fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
+                            <div class="huge">@ViewBag.TotalRole</div>
                             <div>Total Role</div>
                         </div>
                     </div>
@@ -83,8 +83,8 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Add Role</a></li>
-                    <li><a href="#">Manage Role</a></li>
+                    <li>@Html.ActionLink("Add Role", "AddRole", "Admin")</li>
+                    <li>@Html.ActionLink("Manage Role", "ManageRole", "Admin")</li>
                 </ul>
             </div>
         </div>

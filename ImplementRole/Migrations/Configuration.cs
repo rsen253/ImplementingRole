@@ -10,7 +10,6 @@ namespace ImplementRole.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "ImplementRole.Models.ApplicationDbContext";
         }
 
         protected override void Seed(ImplementRole.Models.ApplicationDbContext context)

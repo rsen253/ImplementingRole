@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace ImplementRole.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Account
         public ActionResult Index()
@@ -21,6 +23,7 @@ namespace ImplementRole.Controllers
             if (User.IsInRole(Security.Admin))
             {
                 ViewBag.TotalUser = (from u in db.Users select u).Count() - 1;
+                ViewBag.TotalRole = (from r in db.Roles select r).Count();
                 return View("Admin");
             }
             else
@@ -139,6 +142,43 @@ namespace ImplementRole.Controllers
         public ActionResult Admin()
         {
             return View();
+        }
+
+        public async Task<ActionResult> Edit(string id)
+        {
+
+            var result = await userManager.FindByIdAsync(id);
+            if (result != null)
+            {
+                string Country = (from u in db.Users
+                             join c in db.CountryDetails on u.CountryId equals c.CountryId
+                             select c.CountryName).First().ToString();
+                ViewBag.CountryName = Country;
+                ViewBag.CountryName = new SelectList(db.CountryDetails, "CountryName", "CountryName", Country);
+                List<Country> CountryList = new List<Country>();
+                List<State> StateList = new List<State>();
+                CountryList = db.CountryDetails.OrderBy(c => c.CountryName).ToList();
+                ViewBag.CountryID = new SelectList(CountryList, "CountryId", "CountryName");
+                ViewBag.StateID = new SelectList(StateList, "StateId", "StateName");
+                return View(result);
+            }
+            return RedirectToAction("Index","Home");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(CustomUser Cuser, string id)
+        {
+            var result = await userManager.FindByIdAsync(id);
+            if (result != null)
+	        {
+		        result.FirstName = Cuser.FirstName;
+                result.LastName = Cuser.LastName;
+                result.Email = Cuser.Email;
+                result.CountryId = Cuser.CountryId;
+                result.StateId = Cuser.StateId;
+	        }
+            await userManager.UpdateAsync(result);
+            return RedirectToAction("ManageUser","Admin");
         }
     }
 }

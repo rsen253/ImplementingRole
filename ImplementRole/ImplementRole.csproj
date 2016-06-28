@@ -194,13 +194,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606250549127_InitialCreate.cs" />
-    <Compile Include="Migrations\201606250549127_InitialCreate.Designer.cs">
-      <DependentUpon>201606250549127_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606250601342_AddCustomeFieldtoDb.cs" />
-    <Compile Include="Migrations\201606250601342_AddCustomeFieldtoDb.Designer.cs">
-      <DependentUpon>201606250601342_AddCustomeFieldtoDb.cs</DependentUpon>
+    <Compile Include="Migrations\201606280535318_ChanginDb.cs" />
+    <Compile Include="Migrations\201606280535318_ChanginDb.Designer.cs">
+      <DependentUpon>201606280535318_ChanginDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomModel.cs" />
@@ -257,6 +253,10 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Admin.cshtml" />
     <Content Include="Views\Admin\AddUser.cshtml" />
+    <Content Include="Views\Admin\ManageUser.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Admin\AddRole.cshtml" />
+    <Content Include="Views\Admin\ManageRole.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -270,11 +270,8 @@
     <Folder Include="Views\Company\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606250549127_InitialCreate.resx">
-      <DependentUpon>201606250549127_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606250601342_AddCustomeFieldtoDb.resx">
-      <DependentUpon>201606250601342_AddCustomeFieldtoDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606280535318_ChanginDb.resx">
+      <DependentUpon>201606280535318_ChanginDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
