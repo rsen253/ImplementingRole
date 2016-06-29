@@ -28,4 +28,5 @@ namespace ImplementRole.Models
         [ForeignKey("CountryId")]
         public virtual Country Country { get; set; }
     }
+
 }
